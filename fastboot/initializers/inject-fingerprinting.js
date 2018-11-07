@@ -6,14 +6,16 @@ export function initialize(application) {
 
   const config = application.resolveRegistration('config:environment');
   const environment = config.environment;
+  const injectConfig = config['injectFingerprinting'];
+
   let host;
 
   if (environment === "development") {
-    host = (config.iam && config.iam.host) ? config.iam.host : 'http://localhost:4200';
+    host = (injectConfig && injectConfig.host) ? injectConfig.host : 'http://localhost:4200';
   } else if (environment === "test") {
-    host = (config.iam && config.iam.host) ? config.iam.host : 'http://localhost:7357';
-  } else if (enviroment === "production" && config.iam.host ) {
-    host = config.iam.host;
+    host = (injectConfig && injectConfig.host) ? injectConfig.host : 'http://localhost:7357';
+  } else if (enviroment === "production" && injectConfig.host ) {
+    host = injectConfig.host;
   } else {
     throw new Error('ember-cli-inject-fingerprinting: you must configure the host for production, see documentation');
   }

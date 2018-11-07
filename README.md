@@ -1,6 +1,10 @@
 Ember CLI Inject Fingerprinting
 ==============================================================================
 
+An alternative addon to include fingerprinted asset paths in an Ember application for when you require to dynamically concatenated paths.
+
+It's focus is on a couple of simple use cases, a service with a method which returns the fingerprinted path and a template helper which does the same directly.
+
 Current functionality
 ------------------------------------------------------------------------------
 
@@ -10,7 +14,7 @@ Current functionality
 - [x] Works with Fastboot
 - [x] Passing tests (including Fastboot)
 
-Still to do
+To do
 ------------------------------------------------------------------------------
 
 - [ ] Work with a fingerprinted generated asset map
@@ -29,7 +33,25 @@ ember install ember-cli-inject-fingerprinting
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+It works by creating a meta tag in the head of the `index.html` document which includes url encoded key/value pairs of all the assets, in a similar way to how the config is included.
+
+How this meta tag is read depends on whether it is rendered by the browser or via Node.js with Fastboot.
+
+An initializer does this, depending on scenario, and sets a variable in the service
+
+- Browser: just gets the element directly from `document`
+- Fastboot: first uses `jsdom` to render the page as HTML nodes to allow access to `document` with `meta` tags
+
+For that reason there is a need to set the host for production explicity, like this:
+
+```js
+...
+if (environment === 'production') {
+  ENV.injectFingerprinting.host = 'http://your.domain'
+}
+...
+```
+
 
 
 Contributing
@@ -37,7 +59,7 @@ Contributing
 
 ### Installation
 
-* `git clone <repository-url>`
+* `git clone https://github.com/chrism/ember-cli-inject-fingerprinting.git`
 * `cd ember-cli-inject-fingerprinting`
 * `yarn install`
 
