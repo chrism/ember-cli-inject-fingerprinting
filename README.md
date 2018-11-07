@@ -1,7 +1,22 @@
-ember-cli-inject-fingerprinting
+Ember CLI Inject Fingerprinting
 ==============================================================================
 
-[Short description of the addon.]
+Current functionality
+------------------------------------------------------------------------------
+
+- [x] Service with method to retrieve fingerprinted path
+- [x] Template helper for convenience
+- [x] Injects the fingerprinting in HTML document using meta tag
+- [x] Works with Fastboot
+- [x] Passing tests (including Fastboot)
+
+Still to do
+------------------------------------------------------------------------------
+
+- [ ] Work with a fingerprinted generated asset map
+- [ ] Allow customising asset types in options
+- [ ] Get the host in the Fastboot application initializer automatically
+
 
 Installation
 ------------------------------------------------------------------------------
