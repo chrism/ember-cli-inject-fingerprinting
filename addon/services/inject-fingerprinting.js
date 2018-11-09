@@ -2,8 +2,12 @@ import { getOwner } from '@ember/application';
 import Service from '@ember/service';
 
 export default Service.extend({
+  assets: null,
+  
   init() {
     this._super(...arguments);
+
+    console.log('assets', this.assets);
 
     const { rootURL } = getOwner(this).resolveRegistration('config:environment');
     this.rootURL = rootURL;

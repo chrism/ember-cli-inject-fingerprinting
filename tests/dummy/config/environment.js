@@ -20,6 +20,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    fastboot: {
+      hostWhitelist: [/^localhost:\d+$/, /^127\.0\.0\.1:\d+$/, 'chrismasters.s3-website.eu-west-3.amazonaws.com']
     }
   };
 
